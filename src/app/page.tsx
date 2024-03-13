@@ -1,10 +1,20 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./page.module.css";
 
+import { useSession } from "next-auth/react";
+
 export default function Home() {
+  const { data: session, status } = useSession();
   return (
     <main className={styles.main}>
       <div className={styles.description}>
+        <div>
+          ClientComponent {status}{" "}
+          {status === "authenticated" && session.user?.name}
+        </div>
+
         <p>
           Get started by editing&nbsp;
           <code className={styles.code}>src/app/page.tsx</code>
