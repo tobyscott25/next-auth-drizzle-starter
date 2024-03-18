@@ -1,16 +1,16 @@
-# NextJS + Chakra UI + AuthJS + Drizzle + PostgreSQL + Docker starter
+# NextJS + AuthJS + PostgreSQL + Docker starter
 
 The stack:
 
 - [TypeScript](https://www.typescriptlang.org/)
 - [Next.js](https://nextjs.org/)
-- [Chakra UI](https://chakra-ui.com/)
 - [Auth.js](https://authjs.dev/)
-- [Drizzle](https://orm.drizzle.team/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [Docker](https://www.docker.com/)
 
 ## Getting Started
+
+Create an OAuth application on GitHub. The callback URL should be `http://localhost:3000/api/auth/callback/github`.
 
 Set environment variables:
 
@@ -27,4 +27,6 @@ Run the development stack:
 docker compose up
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit PGAdmin on http://localhost:5050 and run the contents of `setup.sql` to create the required database tables.
+
+Now go to http://localhost:3000 and login with GitHub.
