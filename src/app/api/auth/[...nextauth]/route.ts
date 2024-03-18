@@ -1,5 +1,2 @@
-import NextAuth from "next-auth";
-import { authOptions } from "@/app/lib/auth";
-
-const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
+// Now a one-liner! See: https://authjs.dev/guides/upgrade-to-v5#authenticating-server-side
+export { GET, POST } from "@/auth";

@@ -12,7 +12,16 @@ The stack:
 
 ## Getting Started
 
-First, run the development server:
+Set environment variables:
+
+```sh
+# Secrets go in .env.local, it's ignored by Git.
+# Duplicate values in .env.local will override those in .env.
+cp .env .env.local
+vim .env.local
+```
+
+Run the development server:
 
 ```bash
 npm run dev

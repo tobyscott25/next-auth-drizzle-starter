@@ -1,0 +1,14 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "BusyCal",
+            "Group": "Servers",
+            "Port": 5432,
+            "Username": "busycal",
+            "Host": "db",
+            "MaintenanceDB": "busycal",
+            "SSLMode": "prefer",
+            "PassFile": "/pgpass"
+        }
+    }
+}

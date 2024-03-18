@@ -1,0 +1,65 @@
+version: "3.8"
+
+name: busycal
+
+services:
+  # NextJS app
+  app:
+    image: node:20.11.1-alpine3.19
+    container_name: nextjs-app
+    ports:
+      - "3000:3000"
+    working_dir: /app
+    volumes:
+      - .:/app
+    env_file:
+      - path: ./.env
+        required: true
+      - path: ./.env.local
+        required: false
+    command: ["sh", "./dev.sh"]
+    depends_on:
+      - db
+    networks:
+      - busycal-network
+
+  # Postgres database
+  db:
+    container_name: postgres-db
+    image: postgres:13
+    environment:
+      POSTGRES_USER: busycal
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: busycal
+    ports:
+      - "5432:5432"
+    volumes:
+      - busycal-db-data:/var/lib/postgresql/data
+    networks:
+      - busycal-network
+
+  # PGAdmin for managing the database
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@uniteme.app
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+      PGADMIN_LISTEN_PORT: 5050
+    volumes:
+      - ./pgadmin/servers.json:/pgadmin4/servers.json
+      - ./pgadmin/pgpass:/pgpass
+    ports:
+      - "5050:5050"
+    networks:
+      - busycal-network
+
+
+volumes:
+  busycal-db-data:
+
+networks:
+  busycal-network:
+    driver: bridge
