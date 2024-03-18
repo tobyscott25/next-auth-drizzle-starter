@@ -21,10 +21,10 @@ cp .env .env.local
 vim .env.local
 ```
 
-Run the development server:
+Run the development stack:
 
 ```bash
-npm run dev
+docker compose up
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
