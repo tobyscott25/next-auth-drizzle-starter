@@ -1,6 +1,6 @@
 version: "3.8"
 
-name: busycal
+name: authstarter
 
 services:
   # NextJS app
@@ -21,22 +21,22 @@ services:
     depends_on:
       - db
     networks:
-      - busycal-network
+      - authstarter-network
 
   # Postgres database
   db:
     container_name: postgres-db
     image: postgres:13
     environment:
-      POSTGRES_USER: busycal
+      POSTGRES_USER: authstarter
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: busycal
+      POSTGRES_DB: authstarter
     ports:
       - "5432:5432"
     volumes:
-      - busycal-db-data:/var/lib/postgresql/data
+      - authstarter-db-data:/var/lib/postgresql/data
     networks:
-      - busycal-network
+      - authstarter-network
 
   # PGAdmin for managing the database
   pgadmin:
@@ -54,12 +54,12 @@ services:
     ports:
       - "5050:5050"
     networks:
-      - busycal-network
+      - authstarter-network
 
 
 volumes:
-  busycal-db-data:
+  authstarter-db-data:
 
 networks:
-  busycal-network:
+  authstarter-network:
     driver: bridge

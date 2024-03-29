@@ -1,5 +1,5 @@
-import GitHub from "@auth/core/providers/github";
 import NextAuth, { type NextAuthConfig } from "next-auth";
+import GitHub from "@auth/core/providers/github";
 import { randomBytes, randomUUID } from "crypto";
 import PostgresAdapter from "@auth/pg-adapter";
 import { Pool } from "pg";
@@ -50,7 +50,4 @@ const config: NextAuthConfig = {
   },
 };
 
-export const {
-  handlers: { GET, POST },
-  auth,
-} = NextAuth(config);
+export const { handlers, auth } = NextAuth(config);

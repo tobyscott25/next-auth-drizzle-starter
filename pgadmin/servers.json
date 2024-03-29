@@ -1,12 +1,12 @@
 {
     "Servers": {
         "1": {
-            "Name": "BusyCal",
+            "Name": "authstarter",
             "Group": "Servers",
             "Port": 5432,
-            "Username": "busycal",
+            "Username": "authstarter",
             "Host": "db",
-            "MaintenanceDB": "busycal",
+            "MaintenanceDB": "authstarter",
             "SSLMode": "prefer",
             "PassFile": "/pgpass"
         }
