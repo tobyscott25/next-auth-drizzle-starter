@@ -1,12 +1,12 @@
-# Next.js + Auth.js + PostgreSQL + Docker starter
+# Next.js + Auth.js + Drizzle + Docker starter
 
 ## Introduction
 
-This is a simple [Next.js](https://nextjs.org/) + [TypeScript](https://www.typescriptlang.org/) boilerplate app that uses [Auth.js](https://authjs.dev/) for authentication and session management.
+This is a simple [Next.js](https://nextjs.org/) + [TypeScript](https://www.typescriptlang.org/) boilerplate app that uses [Auth.js](https://authjs.dev/) for authentication and session management. When a user logs in, their data is upserted to the [PostgreSQL](https://www.postgresql.org/) database with Auth.js's [@auth/drizzle-adapter](https://authjs.dev/reference/adapter/drizzle) adapter.
 
-When a user logs in, their data is upserted to the [PostgreSQL](https://www.postgresql.org/) database by Auth.js's [@auth/pg-adapter](https://authjs.dev/reference/adapter/pg) adapter.
+The SQL models required by the AuthJS are available on Auth.js's [database models](https://authjs.dev/getting-started/adapters#models) documentation. This project uses [@auth/drizzle-adapter](https://authjs.dev/reference/adapter/drizzle) so we can use their pre-defined Drizzle schema for PostgreSQL to generate the correct migrations with Drizzle.
 
-This project uses [Docker Compose](https://www.docker.com/) for an easy dev setup, so you don't need to run a database natively.
+This project uses [Docker Compose](https://www.docker.com/) for an easy dev setup, so you don't need to run a database natively. It will also automatically run the migrations for you when the Next.js server starts.
 
 ## Getting Started
 
@@ -35,18 +35,12 @@ cp .env .env.local
 vim .env.local
 ```
 
-#### Creating the required schema in the database
-
-The SQL schema for the tables used by the AuthJS are available on Auth.js's [database models](https://authjs.dev/getting-started/adapters#models) documentation.
-
-This project uses [@auth/pg-adapter](https://authjs.dev/reference/adapter/pg) so we can use the SQL available on that documentation page to setup the database. I have also saved this in `setup-schema.sql` in the root of the repo.
-
 #### Run the development stack
+
+This will automatically install the NPM dependencies and run the DB migrations
 
 ```bash
 docker compose up
 ```
 
-Visit PGAdmin on http://localhost:5050 and run the contents of `setup.sql` to create the required database tables.
-
-Now go to http://localhost:3000 and login with GitHub.
+Now visit http://localhost:3000 and login with GitHub! 🎉

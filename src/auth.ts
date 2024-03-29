@@ -1,21 +1,14 @@
 import NextAuth, { type NextAuthConfig } from "next-auth";
 import GitHub from "@auth/core/providers/github";
 import { randomBytes, randomUUID } from "crypto";
-import PostgresAdapter from "@auth/pg-adapter";
-import { Pool } from "pg";
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  max: 20,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
-});
+import { DrizzleAdapter } from "@auth/drizzle-adapter";
+import { db } from "@/db";
 
 const config: NextAuthConfig = {
   // AuthJS providers infer OAuth credentials from env vars. See: https://authjs.dev/reference/nextjs#environment-variable-inference
   providers: [GitHub],
 
-  adapter: PostgresAdapter(pool),
+  adapter: DrizzleAdapter(db),
 
   session: {
     // Choose how you want to save the user session.
