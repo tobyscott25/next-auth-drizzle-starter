@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 
 export function ExampleClientComponent() {
   const { data: session, status } = useSession();
