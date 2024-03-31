@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
 
+import { Button } from "@/components/ui/button";
+
 export function ExampleClientComponent() {
   const { data: session, status } = useSession();
 
@@ -14,7 +16,7 @@ export function ExampleClientComponent() {
     return (
       <>
         <p>Not signed in.</p>
-        <button onClick={() => signIn("github")}>Sign in with GitHub</button>
+        <Button onClick={() => signIn("github")}>Sign in with GitHub</Button>
       </>
     );
   }
@@ -32,7 +34,7 @@ export function ExampleClientComponent() {
             priority
           />
           <div>{session.user?.name}</div>
-          <button onClick={() => signOut()}>Sign out</button>
+          <Button onClick={() => signOut()}>Sign out</Button>
         </>
       )}
     </div>

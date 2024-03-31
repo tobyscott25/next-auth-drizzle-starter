@@ -1,5 +1,15 @@
 import type { Metadata } from "next";
+import { Inter as FontSans } from "next/font/google";
+
+import { cn } from "@/lib/utils";
 import NextAuthProvider from "@/app/context/NextAuthProvider";
+
+import "@/app/style.css";
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   title: "Next Auth Postgres Starter",
@@ -14,7 +24,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}
+      >
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>
