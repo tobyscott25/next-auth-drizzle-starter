@@ -1,7 +1,8 @@
 import { defineConfig, type Config } from "drizzle-kit";
-import * as dotenv from "dotenv";
+import { loadEnvConfig } from "@next/env";
 
-dotenv.config();
+const projectDir = process.cwd();
+loadEnvConfig(projectDir);
 
 const config = {
   schema: "./src/db/schema/*",
