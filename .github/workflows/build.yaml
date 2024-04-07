@@ -8,42 +8,15 @@ on:
   workflow_dispatch: # Allows the action to be run manually from GitHub UI
 
 jobs:
-  get-build-tag:
-    name: Get build tag
-    runs-on: ubuntu-22.04
-
-    outputs:
-      build-tag: ${{ steps.build-tag.outputs.build-tag }}
-
-    steps:
-      - name: Git checkout
-        uses: actions/checkout@v4
-
-      - name: Get short SHA
-        id: short-sha
-        run: |
-          echo "short-sha=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
-
-      - name: Get build tag
-        id: build-tag
-        run: |
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            echo "build-tag=${{ github.head_ref }}-${{ steps.short-sha.outputs.short-sha }}" >> $GITHUB_OUTPUT
-          else
-            echo "build-tag=${{ github.ref_name }}-${{ steps.short-sha.outputs.short-sha }}" >> $GITHUB_OUTPUT
-          fi
-
   build:
-    name: Build the docker image
-    needs: get-build-tag
+    name: Build the NextJS app
     runs-on: ubuntu-22.04
-
-    env:
-      BUILD_TAG: ${{ needs.get-build-tag.outputs.build-tag }}
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Docker build
-        run: |
-          docker build .
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Next.js app
+        run: npm run build
