@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 
-import { cn } from "@/lib/utils";
-import NextAuthProvider from "@/app/context/NextAuthProvider";
+import { cn } from "@/utils/cn";
+import AuthProvider from "@/app/context/AuthProvider";
 
 import "@/app/style.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -37,7 +37,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NextAuthProvider>{children}</NextAuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </ThemeProvider>
       </body>
     </html>
