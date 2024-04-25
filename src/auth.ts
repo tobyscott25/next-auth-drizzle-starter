@@ -1,12 +1,75 @@
-import NextAuth, { type NextAuthConfig } from "next-auth";
+import NextAuth, {
+  CredentialsSignin,
+  type NextAuthConfig,
+  type User,
+} from "next-auth";
+import { ZodError } from "zod";
 import GitHub from "@auth/core/providers/github";
+import Credentials from "@auth/core/providers/credentials";
 import { randomBytes, randomUUID } from "crypto";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@/db";
+// import saltAndHashPassword from "./utils/saltAndHashPassword";
+import { signInSchema } from "./utils/zod";
+
+class InvalidLoginError extends CredentialsSignin {
+  code = "Invalid identifier or password";
+}
 
 const config: NextAuthConfig = {
   // AuthJS providers infer OAuth credentials from env vars. See: https://authjs.dev/reference/nextjs#environment-variable-inference
-  providers: [GitHub],
+  providers: [
+    GitHub,
+    Credentials({
+      id: "credentials",
+      name: "email and password",
+      type: "credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        try {
+          let user = null;
+
+          const { email, password } = await signInSchema.parseAsync(
+            credentials
+          );
+          console.log("signInSchema", { email, password });
+
+          // Throws an error if used here. Maybe this code runs on the client?
+          // console.log(
+          //   "pwHash",
+          //   saltAndHashPassword(credentials.password as string)
+          // );
+
+          // // logic to verify if user exists
+          // user = await getUserFromDb(credentials.email, pwHash)
+
+          // if (!user) {
+          //   // No user found, so this is their first attempt to login
+          //   // meaning this is also the place you could do registration
+          //   throw new Error("User not found.")
+          // }
+
+          throw new Error("User not found.");
+
+          return {
+            id: "1",
+            name: "Test User",
+            email: "asd@asd.com",
+          } satisfies User;
+        } catch (error) {
+          if (error instanceof ZodError) {
+            // Return `null` to indicate that the credentials are invalid
+            // return null
+            throw new InvalidLoginError();
+          }
+          throw new InvalidLoginError();
+        }
+      },
+    }),
+  ],
 
   adapter: DrizzleAdapter(db),
 
