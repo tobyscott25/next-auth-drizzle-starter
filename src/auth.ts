@@ -11,6 +11,7 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@/db";
 // import saltAndHashPassword from "./utils/saltAndHashPassword";
 import { signInSchema } from "./utils/zod";
+import saltAndHashPassword from "./utils/saltAndHashPassword";
 
 class InvalidLoginError extends CredentialsSignin {
   code = "Invalid identifier or password";
@@ -38,10 +39,7 @@ const config: NextAuthConfig = {
           console.log("signInSchema", { email, password });
 
           // Throws an error if used here. Maybe this code runs on the client?
-          // console.log(
-          //   "pwHash",
-          //   saltAndHashPassword(credentials.password as string)
-          // );
+          // console.log("pwHash", saltAndHashPassword(password));
 
           // // logic to verify if user exists
           // user = await getUserFromDb(credentials.email, pwHash)
