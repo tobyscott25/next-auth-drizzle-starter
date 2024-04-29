@@ -23,7 +23,7 @@
     "pg": "^8.11.5",
     "react": "^18",
     "react-dom": "^18",
-    "tailwind-merge": "^2.2.2",
+    "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
