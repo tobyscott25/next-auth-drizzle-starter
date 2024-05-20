@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@auth/drizzle-adapter": "^1.0.1",
+    "@auth/drizzle-adapter": "^1.1.0",
     "@auth/pg-adapter": "^1.1.0",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-slot": "^1.0.2",
