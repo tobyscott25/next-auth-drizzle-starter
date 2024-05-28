@@ -1,5 +1,5 @@
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { ExampleClientComponent } from "./ExampleClientComponent";
+import { ThemeToggle } from "@/components/ThemeToggle"
+import { ExampleClientComponent } from "./ExampleClientComponent"
 
 export default function Home() {
   // await getServerSession(authOptions);
@@ -10,5 +10,5 @@ export default function Home() {
       <ExampleClientComponent />
       <ThemeToggle />
     </div>
-  );
+  )
 }

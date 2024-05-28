@@ -1,4 +1,4 @@
-import NextAuth, { type NextAuthConfig } from "next-auth";
+import NextAuth, { type NextAuthConfig } from "next-auth"
 import GitHub from "@auth/core/providers/github"
 import { randomBytes, randomUUID } from "crypto"
 import { DrizzleAdapter } from "@auth/drizzle-adapter"

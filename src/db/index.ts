@@ -1,9 +1,9 @@
-import { drizzle } from "drizzle-orm/node-postgres";
-import { Pool } from "pg";
+import { drizzle } from "drizzle-orm/node-postgres"
+import { Pool } from "pg"
 
-let sslMode = "require";
+let sslMode = "require"
 if (process.env.NODE_ENV === "development") {
-  sslMode = "disable";
+  sslMode = "disable"
 }
 
 const pool = new Pool({
@@ -11,8 +11,8 @@ const pool = new Pool({
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
-});
+})
 
-export const db = drizzle(pool, { logger: true });
+export const db = drizzle(pool, { logger: true })
 
-export * from "drizzle-orm";
+export * from "drizzle-orm"
