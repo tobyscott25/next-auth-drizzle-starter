@@ -9,7 +9,7 @@ on:
 
 jobs:
   lint-test-build:
-    name: Run lint and formatting checks
+    name: Lint, Test, Build
     runs-on: ubuntu-22.04
 
     steps:
