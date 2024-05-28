@@ -1,8 +1,8 @@
 import NextAuth, { type NextAuthConfig } from "next-auth";
-import GitHub from "@auth/core/providers/github";
-import { randomBytes, randomUUID } from "crypto";
-import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import { db } from "@/db";
+import GitHub from "@auth/core/providers/github"
+import { randomBytes, randomUUID } from "crypto"
+import { DrizzleAdapter } from "@auth/drizzle-adapter"
+import { db } from "@/db"
 
 const config: NextAuthConfig = {
   // AuthJS providers infer OAuth credentials from env vars. See: https://authjs.dev/reference/nextjs#environment-variable-inference
@@ -30,17 +30,17 @@ const config: NextAuthConfig = {
     // The session token is usually either a random UUID or string, however if you
     // need a more customized session token string, you can define your own generate function.
     generateSessionToken: () => {
-      return randomUUID?.() ?? randomBytes(32).toString("hex");
+      return randomUUID?.() ?? randomBytes(32).toString("hex")
     },
   },
 
   // Customise callback handling
   callbacks: {
     async signIn({ user, account, profile }) {
-      console.log("signIn", user, account, profile);
-      return true;
+      console.log("signIn", user, account, profile)
+      return true
     },
   },
-};
+}
 
-export const { handlers, auth } = NextAuth(config);
+export const { handlers, auth } = NextAuth(config)
