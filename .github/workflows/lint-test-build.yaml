@@ -1,0 +1,31 @@
+name: Lint, Test and Build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allows the action to be run manually from GitHub UI
+
+jobs:
+  lint-test-build:
+    name: Run lint and formatting checks
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run lint check
+        run: npm run lint
+
+      - name: Run formatting check
+        run: npm run prettier-check
+
+      - name: Run unit tests
+        run: npm run test:ci
+
+      - name: Build the app
+        run: npm run build
