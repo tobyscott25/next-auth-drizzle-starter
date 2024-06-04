@@ -14,7 +14,7 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
-    "@auth/core": "^0.31.0",
+    "@auth/core": "^0.32.0",
     "@auth/drizzle-adapter": "^1.1.0",
     "@auth/pg-adapter": "^1.1.0",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
